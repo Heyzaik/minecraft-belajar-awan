@@ -54,7 +54,7 @@ minecraft-aws-project/
 
 ---
 
-## Phase 1: ClickOps EC2 Setup (Learning Phase)
+## Phase 1: ClickOps EC2 Setup (Learning & Server testing Phase)
 
 ### EC2 Configuration
 
@@ -163,39 +163,7 @@ logs/
 
 ---
 
-## Phase 4: Data Engineering Project
-
-### Planned Pipeline
-
-**Source**
-
-* Minecraft logs (EC2 filesystem)
-
-**Ingestion**
-
-* Filebeat / custom Python
-* Push to S3
-
-**Processing**
-
-* Parse logs → structured events
-* Sessionization
-
-**Storage**
-
-* S3 (raw)
-* DuckDB / Snowflake (analytics)
-
-**Analytics Questions**
-
-* Average session length
-* Peak playing hours
-* Player churn
-* Lag vs player count
-
----
-
-## Phase 5: Terraform Migration
+## Phase 4: Terraform Migration
 
 ### Why Terraform
 
@@ -238,6 +206,40 @@ logs/
 * Spot instances
 
 ---
+
+
+## Phase 5: Data Engineering Project
+
+### Planned Pipeline
+
+**Source**
+
+* Minecraft logs (EC2 filesystem)
+
+**Ingestion**
+
+* Filebeat / custom Python
+* Push to S3
+
+**Processing**
+
+* Parse logs → structured events
+* Sessionization
+
+**Storage**
+
+* S3 (raw)
+* DuckDB / Snowflake (analytics)
+
+**Analytics Questions**
+
+* Average session length
+* Peak playing hours
+* Player churn
+* Lag vs player count
+
+---
+
 
 ## Author
 
