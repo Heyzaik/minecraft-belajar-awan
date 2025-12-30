@@ -20,27 +20,40 @@ This guide documents all steps required to set up and manage a Minecraft server 
 - Basic knowledge of Terraform resources and modules
 
 ## Terraform Directory Structure
-- infra/
-  - env/
-    - dev/
-      - main.tf             # Main Terraform entrypoint
-      - provider.tf         # AWS provider configuration
-      - variables.tf        # Variables definition
-      - outputs.tf          # Output variables
-      - modules/
-        - ec2/
-          - main.tf         # EC2 instance definition
-          - variables.tf
-          - outputs.tf
-        - networking/
-          - main.tf         # VPC, Subnet, Route tables
-          - variables.tf
-          - outputs.tf
-        - security-group/
-          - main.tf         # Security group for EC2
-          - variables.tf
-          - outputs.tf
-      - .terraform/         # Terraform state (ignored in Git)
+```
+├── dev
+│   ├── main.tf
+│   ├── modules
+│   │   ├── ec2
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   └── variables.tf
+│   │   ├── networking
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   └── variables.tf
+│   │   └── security-group
+│   │       ├── main.tf
+│   │       ├── outputs.tf
+│   │       └── variables.tf
+│   ├── outputs.tf
+│   ├── provider.tf
+│   ├── terraform.tfstate
+│   ├── terraform.tfstate.backup
+│   ├── terraform.tfvars
+│   └── variables.tf
+└── prod
+    ├── main.tf
+    ├── modules
+    │   ├── ec2
+    │   ├── networking
+    │   └── security-group
+    ├── outputs.tf
+    ├── provider.tf
+    ├── terraform.tfvars
+    └── variables.tf
+
+```
 
 > **Note:** The `.terraform/` folder, `terraform.tfstate`, and Terraform provider binaries **should never be committed to Git**.
 
@@ -80,6 +93,7 @@ terraform output minecraft_ec2_public_ip
 ```
 - Shows the public IP of your Minecraft server
 
+
 ## Managing EC2 Key Pair
 Terraform requires an AWS Key Pair for SSH access.
 
@@ -95,6 +109,7 @@ key_name = "minecraft-keypair"
 ```
 > Terraform does not automatically create key pairs unless defined explicitly in a resource block.
 
+
 ## Destroying Resources
 1. Destroy all resources in the environment:
 ```bash
@@ -108,6 +123,7 @@ terraform destroy -target=module.minecraft_ec2.aws_instance.minecraft_ec2
 ```
 - Only the targeted resource will be destroyed, leaving other resources intact
 
+
 ## Recreating Specific Resources
 1. Recreate resources defined in `.tf` files that do not exist in state:
 ```bash
@@ -119,6 +135,7 @@ terraform apply
 terraform import <resource> <aws-resource-id>
 ```
 to sync existing resources into Terraform state before applying.
+
 
 ## Best Practices
 - Ignore sensitive and large files in Git:
