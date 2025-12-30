@@ -24,32 +24,38 @@ This mirrors how real-world systems evolve:
 
 ```
 minecraft-aws-project/
-├── README.md                # High-level documentation (this file)
-├── docs/                     # Deep-dive documentation
+├── data                                # Data engineering work (future work when server is stable)
+│   ├── analytics
+│   ├── ingestion
+│   ├── schemas
+│   └── transformation
+├── docs                                # Deep-dive documentation
 │   ├── architecture.md
 │   ├── aws-costs.md
-│   ├── troubleshooting.md
-│   └── decisions.md
-├── infra/                    # Infrastructure as Code (Terraform)
-│   ├── envs/
-│   │   ├── dev/
-│   │   └── prod/
-│   ├── modules/
-│   │   ├── ec2/
-│   │   ├── security-group/
-│   │   └── networking/
-│   └── README.md
-├── server/                   # Minecraft server setup
-│   ├── start.sh
-│   ├── stop.sh
-│   ├── server.properties
-│   └── eula.txt
-├── data/                     # Data engineering work
-│   ├── ingestion/
-│   ├── transformation/
-│   ├── analytics/
-│   └── schemas/
-└── .gitignore
+│   ├── decisions.md
+│   └── troubleshooting.md
+├── infra                               # Infrastructure as Code (Terraform)
+│   └── env
+│       ├── dev
+│       │   ├── main.tf
+│       │   ├── modules
+│       │   ├── outputs.tf
+│       │   ├── provider.tf
+│       │   ├── terraform.tfvars
+│       │   └── variables.tf
+│       └── prod
+│           ├── main.tf
+│           ├── modules
+│           ├── outputs.tf
+│           ├── provider.tf
+│           ├── terraform.tfvars
+│           └── variables.tf
+├── README.md                           # High-level documentation (this file)
+└── server                              # Minecraft server setup
+    ├── eula.txt
+    ├── server.properties
+    ├── start.sh
+    └── stop.sh
 ```
 
 ---
